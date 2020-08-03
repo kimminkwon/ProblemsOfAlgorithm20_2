@@ -9,9 +9,7 @@ public class 단어정렬_1181 {
 	
 	public static void main(String[] args) {
 		makeInput();
-		System.out.println(Arrays.toString(stringArr));
 		wordSort();
-		System.out.println(Arrays.toString(stringArr));
 		printAnswer();
 	}
 	
@@ -19,12 +17,10 @@ public class 단어정렬_1181 {
 		Comparator<String> strComparator = new Comparator<String>() {
 			@Override
 			public int compare(String s1, String s2) {
-				if(s1.length() != s2.length()) {
+				if(s1.length() != s2.length()) 
 					return s1.length() - s2.length();
-				}
-				else {
+				else 
 					return s1.compareTo(s2);
-				}
 			}
 		};
 		Arrays.sort(stringArr, strComparator);
@@ -41,9 +37,10 @@ public class 단어정렬_1181 {
 	
 	private static void makeInput() {
 		Scanner input = new Scanner(System.in);
-		n = input.nextInt();
 		
+		n = input.nextInt();
 		stringArr = new String[n];
+		
 		for(int i = 0; i < n; i++) {
 			stringArr[i] = input.next();
 		}
