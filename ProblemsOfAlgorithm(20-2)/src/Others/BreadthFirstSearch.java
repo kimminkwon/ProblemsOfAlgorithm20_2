@@ -38,6 +38,7 @@ class BFS {
 
 public class BreadthFirstSearch {
 	public static void main(String[] args) {
+		// 인접리스트 생성
 		AdjList al = new AdjList(8);
 		al.putDouble(1, 2); al.putDouble(1, 3);
 		al.putDouble(2, 3); al.putDouble(2, 4); al.putDouble(2, 5);
