@@ -2,6 +2,8 @@ package Others;
 
 import java.util.*;
 
+// 그래프 알고리즘을 위한 인접 리스트 클래스 구현
+
 public class AdjList {
 	private ArrayList<ArrayList<Integer>> list;
 	
