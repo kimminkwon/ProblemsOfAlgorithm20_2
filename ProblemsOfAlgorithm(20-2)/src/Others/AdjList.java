@@ -6,10 +6,10 @@ import java.util.*;
 
 public class AdjList {
 	private ArrayList<ArrayList<Integer>> list;
+	private ArrayList<Integer>[] list2;
 	
 	public AdjList(int listSize) {
 		this.list = new ArrayList<ArrayList<Integer>>();
-		
 		for(int i = 0; i < listSize; i++) {
 			this.list.add(new ArrayList<Integer>());
 		}
