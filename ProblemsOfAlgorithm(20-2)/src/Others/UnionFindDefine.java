@@ -25,7 +25,7 @@ class UnionFind {
 	public void unionSet(int i, int j) {
 		int iRoot = findSet(i);
 		int jRoot = findSet(j);
-		System.out.println("합칠 대상: " + i + ", " + j + "이고, 각 Root는 " + iRoot + ", " + jRoot);
+		// System.out.println("합칠 대상: " + i + ", " + j + "이고, 각 Root는 " + iRoot + ", " + jRoot);
 		
 		if(iRoot != jRoot) {
 			int numOfi = unionFindList[iRoot] * -1;
