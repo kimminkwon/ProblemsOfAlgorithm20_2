@@ -1,5 +1,7 @@
 package BaekJoon;
 
+import java.util.Scanner;
+
 public class BasicTemplete {
 /*
 
@@ -13,4 +15,13 @@ public class Main {
 }
 
  */
+	/*
+	public static void main(String[] args) {
+		makeInput();
+	}
+
+	private static void makeInput() {
+		Scanner input = new Scanner(System.in);
+	}
+	*/
 }
