@@ -37,10 +37,8 @@ public class 부녀회장이될테야_2775 {
 		Scanner input = new Scanner(System.in);
 		n = input.nextInt();
 		
-		floor = new int[n];
-		houseNumber = new int[n];
-		numOfPeoples = new long[15][15];
-		results = new long[n];
+		floor = new int[n]; houseNumber = new int[n];
+		numOfPeoples = new long[15][15]; results = new long[n];
 		
 		for(int i = 0; i < n; i++) {
 			floor[i] = input.nextInt();
