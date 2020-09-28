@@ -70,8 +70,7 @@ public class 계단오르기_2579 {
 	private static void makeInput() {
 		Scanner input = new Scanner(System.in);
 		numOfStair = input.nextInt();
-		costOfStair = new int[numOfStair + 1];
-		maxCostOfStair = new int[numOfStair + 1];
+		costOfStair = new int[numOfStair + 1]; maxCostOfStair = new int[numOfStair + 1];
 		costOfStair[0] = 0;
 		for(int i = 1; i <= numOfStair; i++) {
 			costOfStair[i] = input.nextInt();
