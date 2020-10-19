@@ -22,6 +22,7 @@ public class 수정렬하기_2751 {
 	}
 	
 	private static void qSort(int[] numArr, int start, int end) {
+	
 		if(start >= end) {
 			return;
 		}
