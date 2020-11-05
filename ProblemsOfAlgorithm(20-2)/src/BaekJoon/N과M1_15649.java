@@ -17,11 +17,11 @@ public class N과M1_15649 {
 	private static void makePerms() {
 		for(int i = 1; i <= N; i++) {
 			Arrays.fill(colors, "white");
-			makePerm(i, 0, "");
+			makePerms(i, 0, "");
 		}
 	}
 
-	private static void makePerm(int index, int length, String visited) {
+	private static void makePerms(int index, int length, String visited) {
 		colors[index] = "gray";
 		length++;
 		visited = visited + String.valueOf(index);
@@ -34,7 +34,7 @@ public class N과M1_15649 {
 			}
 			if(colors[i] == "white") {
 				// System.out.println(i + "를 방문");
-				makePerm(i, length, visited);
+				makePerms(i, length, visited);
 				colors[i] = "white";
 			}
 		}
