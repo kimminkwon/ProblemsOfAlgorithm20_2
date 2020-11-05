@@ -5,12 +5,13 @@ import java.util.Scanner;
 public class BasicTemplete {
 /*
 
+import java.util.stream.*;
 import java.util.*;
 import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        
+
     }
 }
 
