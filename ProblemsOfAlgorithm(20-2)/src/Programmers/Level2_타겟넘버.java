@@ -17,6 +17,7 @@ public class Level2_타겟넘버 {
     }
 
     private static void makeTargetValue(int value, int index, boolean[] isSelected, int[] numbers, int target) {
+
         if(index == numbers.length) {
             if(value == target) {
                 result++;
