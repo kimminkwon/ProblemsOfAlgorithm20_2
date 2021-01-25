@@ -1,37 +1,59 @@
 package BaekJoon;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Stack;
 
 public class 스택수열_1874 {
 
+    private static int n;
+    private static List<Integer> nums;
+    private static String results;
+
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
+        makeInput();
+        makePermUsingStack();
+        printResult();
+    }
 
-        int n = Integer.parseInt(br.readLine());
+    private static void printResult() {
+        System.out.println(results);
+    }
 
-        int temp;
-        int max = 0;
-        int top = 0;
-        int[] stack = new int[n];
+    private static void makePermUsingStack() {
+        Stack<Integer> st = new Stack<>();
+        StringBuilder sb = new StringBuilder("");
+        int count = 1;
 
-        while(n-- > 0){
-            temp = Integer.parseInt(br.readLine());
-            if(temp > max){
-                for(int i=max+1; i<=temp; i++){
-                    stack[top++] = i;
-                    sb.append("+\n");
-                }
-                max = temp;
-            }else if(stack[top-1] != temp) {
-                System.out.println("NO");
-                return;
+        for(int i = 0 ; i < n; i++) {
+            if(st.isEmpty()) {
+                st.push(count++);
+                sb.append("+\n");
             }
-            top--;
-            sb.append("-\n"); // pop
+
+            if(nums.get(i) < st.peek()) break;
+            while(st.peek() != nums.get(i)) {
+                st.push(count++);
+                sb.append("+\n");
+            }
+
+            if(st.peek() == nums.get(i)) {
+                st.pop();
+                sb.append("-\n");
+            }
         }
-        System.out.println(sb);
+
+        if(!st.isEmpty()) results = "NO";
+        else results = sb.toString();
+    }
+
+    private static void makeInput() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        n = Integer.parseInt(br.readLine());
+        nums = new ArrayList<>();
+
+        for(int i = 0; i < n; i++)
+            nums.add(Integer.parseInt(br.readLine()));
     }
 }

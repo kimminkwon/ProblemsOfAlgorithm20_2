@@ -3,13 +3,14 @@ package BaekJoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class 괄호_9012 {
 
     private static int t;
     private static char[][] parenthesis;
-    private static String[] results;
+    private static List<String> results;
 
     public static void main(String[] args) throws IOException {
         makeInput();
@@ -18,12 +19,12 @@ public class 괄호_9012 {
     }
 
     private static void printResults() {
-        Arrays.stream(results).forEach(s -> System.out.println(s));
+        results.stream().forEach(s -> System.out.println(s));
     }
 
     private static void makeResults() {
         for(int i = 0; i < t; i++)
-            results[i] = isVPS(parenthesis[i]);
+            results.add(isVPS(parenthesis[i]));
     }
 
     private static String isVPS(char[] parenthesis) {
@@ -42,7 +43,7 @@ public class 괄호_9012 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         t = Integer.parseInt(br.readLine());
         parenthesis = new char[t][];
-        results = new String[t];
+        results = new ArrayList<>();
 
         for(int i = 0; i < t; i++)
             parenthesis[i] = br.readLine().toCharArray();
