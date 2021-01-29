@@ -1,109 +1,62 @@
 package BaekJoon;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class 체스판다시칠하기_1018 {
 
-	static int N, M;
-	static char[][] board;
-	static char[][] trueBoardOne;
-	static char[][] trueBoardTwo;
-	static int result;
+	private static int N, M, result;
+	private static char[][] board;
+	private static char[][] trueBoardOne = {{'W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'},
+											{'B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'},
+											{'W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'},
+											{'B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'},
+											{'W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'},
+											{'B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'},
+											{'W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'},
+											{'B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'}};
+	private static char[][] trueBoardTwo = {{'B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'},
+											{'W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'},
+											{'B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'},
+											{'W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'},
+											{'B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'},
+											{'W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'},
+											{'B', 'W', 'B', 'W', 'B', 'W', 'B', 'W'},
+											{'W', 'B', 'W', 'B', 'W', 'B', 'W', 'B'}};
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		makeInput();
-		makeTrueBoards();
-		findMinimumDraw();
+		findMinimumDiffToCurrBoard();
 		printResult();
 	}
 
-
-	private static void printResult() {
-		System.out.println(result);
+	private static void findMinimumDiffToCurrBoard() {
+		for(int i = 0; i <= N-8; i++)
+			for(int j = 0; j <= M-8; j++)
+				result = Math.min(result, calculateDiffFromStart(i, j));
 	}
 
-
-	private static void makeTrueBoards() {
-		trueBoardOne = new char[8][8];
-		trueBoardTwo = new char[8][8];
-		
-		for(int i = 0; i < 8; i++) {
+	private static int calculateDiffFromStart(int iStart, int jStart) {
+		int diffToBoardOne = 0, diffToBoardTwo = 0;
+		for(int i = 0; i < 8; i++)
 			for(int j = 0; j < 8; j++) {
-				if(i % 2 == 0) {
-					if(j % 2 == 0)  {
-						trueBoardOne[i][j] = 'W';
-						trueBoardTwo[i][j] = 'B';
-					}
-					else {
-						trueBoardOne[i][j] = 'B';
-						trueBoardTwo[i][j] = 'W';
-					}
-						
-				}
-				else {
-					if(j % 2 == 0) {
-						trueBoardOne[i][j] = 'B';
-						trueBoardTwo[i][j] = 'W';
-					}
-					else {
-						trueBoardOne[i][j] = 'W';
-						trueBoardTwo[i][j] = 'B';
-					}
-				}		
+				if(trueBoardOne[i][j] != board[i + iStart][j + jStart]) diffToBoardOne++;
+				if(trueBoardTwo[i][j] != board[i + iStart][j + jStart]) diffToBoardTwo++;
 			}
-		}
+		return Math.min(diffToBoardOne, diffToBoardTwo);
 	}
 
-
-	private static void findMinimumDraw() {
-		result = Integer.MAX_VALUE;
-
-		for(int i = 0; i <= N-8; i++) {
-			for(int j = 0; j <= M-8; j++) {
-				char[][] divideBoard = divideToPoint(i, j);
-				int numOfDraw = findNumOfDraw(divideBoard);
-				if(result > numOfDraw)
-					result = numOfDraw;
-			}
-		}
-	}
-
-
-	private static int findNumOfDraw(char[][] divideBoard) {
-		int oneCnt = 0;
-		int twoCnt = 0;
-		for(int i = 0; i < 8; i++) {
-			for(int j = 0; j < 8; j++) {
-				if(trueBoardOne[i][j] != divideBoard[i][j])
-					oneCnt++;			
-				if(trueBoardTwo[i][j] != divideBoard[i][j])
-					twoCnt++;
-			}
-		}
-		return Math.min(oneCnt, twoCnt);
-	}
-
-
-	private static char[][] divideToPoint(int x, int y) {
-		char[][] cArr = new char[8][8];
-		for(int i = x; i < x+8; i++) {
-			for(int j = y; j < y+8; j++) {
-				cArr[i-x][j-y] = board[i][j];
-			}
-		}
-		return cArr;
-	}
-
-
-	private static void makeInput() {
-		Scanner input = new Scanner(System.in);
-		N = input.nextInt(); // 세로 
-		M = input.nextInt(); // 가로
+	private static void makeInput() throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		N = Integer.parseInt(st.nextToken()); M = Integer.parseInt(st.nextToken()); result = Integer.MAX_VALUE;
 		board = new char[N][M];
-		for(int i = 0; i < N; i++) {
-			String s = input.next();
-			for(int j = 0; j < M; j++)
-				board[i][j] = s.charAt(j);
-		}
+		for(int i = 0; i < N; i++) board[i] = br.readLine().toCharArray();
 	}
+
+	private static void printResult() { System.out.println(result); }
+
 }
