@@ -21,6 +21,13 @@ class Coor {
     public int getTwo() {
         return two;
     }
+
+    @Override
+    public String toString() {
+        return "(" + one +
+                ", " + two +
+                ')';
+    }
 }
 
 public class 뱀_3190 {
