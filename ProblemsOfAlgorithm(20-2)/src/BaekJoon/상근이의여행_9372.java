@@ -41,12 +41,11 @@ public class 상근이의여행_9372 {
         }
 
         for(int i = 0; i < N - 1; i++) {
-            for(int j = 1; j <= N; j++) {
+            for(int j = 1; j <= N; j++)
                 if(min >= minDist[j] && visited[j] == false) {
                     min = minDist[j];
                     minIndex = j;
                 }
-            }
             visited[minIndex] = true;
             result += min;
 
