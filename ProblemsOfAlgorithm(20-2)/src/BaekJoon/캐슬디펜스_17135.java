@@ -15,22 +15,14 @@ public class 캐슬디펜스_17135 {
 	private static class Coor {
 		int x, y;
 		public Coor(int x, int y) { this.x = x; this.y = y; }
-		@Override
-		public String toString() {
-			return "(" + x + ", " + y + ")";
-		}
-		
-		
 	}
 	
 	private static int N, M, D, numOfMon, result;
-	private static List<Coor> bowList = new ArrayList<>();
 	private static List<Coor> monList = new ArrayList<>();
 	
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		
 		
 		N = Integer.parseInt(st.nextToken());
 		M = Integer.parseInt(st.nextToken());
