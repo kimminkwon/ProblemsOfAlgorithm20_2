@@ -20,7 +20,6 @@ public class 퍼즐_1525 {
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
         for(int i = 0; i < 3; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
             for(int j = 0; j < 3; j++)
