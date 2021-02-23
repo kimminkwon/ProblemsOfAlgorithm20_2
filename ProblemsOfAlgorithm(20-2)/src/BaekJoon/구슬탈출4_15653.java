@@ -9,12 +9,8 @@ public class 구슬탈출4_15653 {
     private static class State {
         int rx, ry, bx, by;
         public String getStr() { return rx + "+" +  ry + "+" + bx + "+" + by; }
-
-        @Override
-        public String toString() {
-            return "[ r(" + rx + ", " + ry + "), b(" + bx + ", " + by + ") ]";
-        }
     }
+
     private static int N, M, gx, gy, result;
     private static char[][] map;
     private static int[] dX = {-1, 1, 0, 0}, dY = {0, 0, -1, 1};
@@ -71,25 +67,22 @@ public class 구슬탈출4_15653 {
         nextState.bx = s.bx; nextState.by = s.by;
         nextState.rx = s.rx; nextState.ry = s.ry;
 
-        boolean rOut = false, bOut = false;
         boolean first = findFirst(nextState, dir);
         if(first) {
             while(true) {
                 int rnX = nextState.rx == -1 ? -1 : nextState.rx + dX[dir], rnY = nextState.ry + dY[dir];
                 if(isOut(rnX, rnY, nextState.bx, nextState.by)) break;
                 else {
-                    if(rnX == gx && rnY == gy) {
-                        nextState.rx = -1;
-                    } else nextState.rx = rnX; nextState.ry = rnY;
+                    if(rnX == gx && rnY == gy) nextState.rx = -1;
+                    else nextState.rx = rnX; nextState.ry = rnY;
                 }
             }
             while(true) {
                 int bnX = nextState.bx == -1 ? -1 : nextState.bx + dX[dir], bnY = nextState.by + dY[dir];
                 if(isOut(bnX, bnY, nextState.rx, nextState.ry)) break;
                 else {
-                    if(bnX == gx && bnY == gy) {
-                        nextState.bx = -1;
-                    } else nextState.bx = bnX; nextState.by = bnY;
+                    if(bnX == gx && bnY == gy) nextState.bx = -1;
+                    else nextState.bx = bnX; nextState.by = bnY;
                 }
             }
         } else {
@@ -97,22 +90,19 @@ public class 구슬탈출4_15653 {
                 int bnX = nextState.bx == -1 ? -1 : nextState.bx + dX[dir], bnY = nextState.by + dY[dir];
                 if(isOut(bnX, bnY, nextState.rx, nextState.ry)) break;
                 else {
-                    if(bnX == gx && bnY == gy) {
-                        nextState.bx = -1;
-                    } else nextState.bx = bnX; nextState.by = bnY;
+                    if(bnX == gx && bnY == gy) nextState.bx = -1;
+                    else nextState.bx = bnX; nextState.by = bnY;
                 }
             }
             while(true) {
                 int rnX = nextState.rx == -1 ? -1 : nextState.rx + dX[dir], rnY = nextState.ry + dY[dir];
                 if(isOut(rnX, rnY, nextState.bx, nextState.by)) break;
                 else {
-                    if(rnX == gx && rnY == gy) {
-                        nextState.rx = -1;
-                    } else nextState.rx = rnX; nextState.ry = rnY;
+                    if(rnX == gx && rnY == gy) nextState.rx = -1;
+                    else nextState.rx = rnX; nextState.ry = rnY;
                 }
             }
         }
-
         return nextState;
     }
 

@@ -8,12 +8,6 @@ public class 방배정_13300 {
 	private static class Student {
 		int year, gender;
 		public Student(int gender, int year) { this.year = year; this.gender = gender; }
-		@Override
-		public String toString() {
-			return "Student [year=" + year + ", gender=" + gender + "]";
-		}
-		
-		
 	}
 	
 	private static int N, K;
