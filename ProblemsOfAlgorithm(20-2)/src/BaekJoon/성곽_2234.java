@@ -9,29 +9,12 @@ public class 성곽_2234 {
     private static class Coor {
         int x, y;
         public Coor(int x, int y) { this.x = x; this.y = y; }
-
-        @Override
-        public String toString() {
-            return "("+ x +
-                    ", " + y +
-                    ')';
-        }
     }
 
     private static int N, M, numOfRoom, maxSize, maxAdjSize;
     private static int[][] map;
     private static Map<Integer, Integer> roomSize = new HashMap<>();
     private static int[] dX = {0, -1, 0, 1}, dY = {-1, 0, 1, 0};
-
-    private static void print(int[][] map) {
-        for(int i = 0; i < M; i++) {
-            for(int j = 0; j < N; j++) {
-                System.out.print(map[i][j] + " ");
-            }
-            System.out.println();
-        }
-    }
-
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -54,53 +37,15 @@ public class 성곽_2234 {
         System.out.println(maxAdjSize);
     }
 
-    private static void findMaxAdjRoom(int[][] roomMap) {
-        boolean[] visitNum = new boolean[numOfRoom + 1];
-        for (int i = 0; i < M; i++) {
-            for (int j = 0; j < N; j++) {
-                if(!visitNum[roomMap[i][j]]) {
-                    doAdjBFS(new Coor(i, j), roomMap, roomMap[i][j]);
-                    visitNum[roomMap[i][j]] = true;
-                }
-            }
-        }
-    }
-
-    private static void doAdjBFS(Coor start, int[][] roomMap, int roomNum) {
-        boolean[][] visited = new boolean[M][N];
-        boolean[] adjNum = new boolean[numOfRoom + 1];
-        Deque<Coor> q = new ArrayDeque<>();
-        q.offer(start);
-        visited[start.x][start.y] = true;
-
-        while(!q.isEmpty()) {
-            Coor currC = q.poll();
-            for(int d = 0; d < 4; d++) {
-                int nX = currC.x + dX[d], nY = currC.y + dY[d];
-                if(!isOut(nX, nY) && !visited[nX][nY]) {
-                    if(roomMap[nX][nY] != roomNum) adjNum[roomMap[nX][nY]] = true;
-                    else {
-                        q.offer(new Coor(nX, nY));
-                        visited[nX][nY] = true;
-                    }
-                }
-            }
-        }
-        for(int i = 1; i <= numOfRoom; i++)
-            if(adjNum[i]) maxAdjSize = Math.max(roomSize.get(roomNum) + roomSize.get(i), maxAdjSize);
-    }
-
     private static int[][] findNumOfRoomAndSize(int cnt, int[][] roomMap) {
-        loop: for(int i = 0; i < M; i++) {
-            for(int j = 0; j < N; j++) {
+        loop: for(int i = 0; i < M; i++)
+            for(int j = 0; j < N; j++)
                 if (roomMap[i][j] == 0) {
                     roomSize.put(cnt, doBFS(new Coor(i, j), roomMap, cnt));
                     cnt++;
                     i = 0; j = 0;
                     continue;
                 }
-            }
-        }
         numOfRoom = cnt - 1;
         return roomMap;
     }
@@ -127,6 +72,39 @@ public class 성곽_2234 {
         return size;
     }
 
+    private static void findMaxAdjRoom(int[][] roomMap) {
+        boolean[] visitNum = new boolean[numOfRoom + 1];
+        for (int i = 0; i < M; i++)
+            for (int j = 0; j < N; j++)
+                if(!visitNum[roomMap[i][j]]) {
+                    doAdjBFS(new Coor(i, j), roomMap, roomMap[i][j]);
+                    visitNum[roomMap[i][j]] = true;
+                }
+    }
+
+    private static void doAdjBFS(Coor start, int[][] roomMap, int roomNum) {
+        boolean[][] visited = new boolean[M][N];
+        boolean[] adjNum = new boolean[numOfRoom + 1];
+        Deque<Coor> q = new ArrayDeque<>();
+        q.offer(start);
+        visited[start.x][start.y] = true;
+
+        while(!q.isEmpty()) {
+            Coor currC = q.poll();
+            for(int d = 0; d < 4; d++) {
+                int nX = currC.x + dX[d], nY = currC.y + dY[d];
+                if(!isOut(nX, nY) && !visited[nX][nY]) {
+                    if(roomMap[nX][nY] != roomNum) adjNum[roomMap[nX][nY]] = true;
+                    else {
+                        q.offer(new Coor(nX, nY));
+                        visited[nX][nY] = true;
+                    }
+                }
+            }
+        }
+        for(int i = 1; i <= numOfRoom; i++)
+            if(adjNum[i]) maxAdjSize = Math.max(roomSize.get(roomNum) + roomSize.get(i), maxAdjSize);
+    }
 
     private static boolean isOut(int x, int y) {
         return x >= M || x < 0 || y >= N || y < 0;
