@@ -58,7 +58,6 @@ public class 미친아두이노_8972 {
     }
 
     private static void doMove() {
-        Deque<Coor> buffer = new ArrayDeque<>();
         for(int d : move) {
             result++;
             // 1. 종수의 이동
