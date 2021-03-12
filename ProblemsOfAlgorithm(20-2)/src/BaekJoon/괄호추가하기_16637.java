@@ -28,6 +28,7 @@ public class 괄호추가하기_16637 {
             result = Math.max(result, beforeRes);
             return;
         }
+
         // 1. 괄호를 묶지 않고 진행
         int currRes1 = calculate(beforeRes, oper[index], Integer.parseInt(oper[index + 1]));
         findMaximumResult(index + 2, currRes1);
