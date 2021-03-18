@@ -12,7 +12,7 @@ public class 친구네트워크_4195 {
         int[] uf;
 
         public UnionFind(int n) {
-            uf = new int[n * 2 + 1];
+            uf = new int[n * 2 + 1]; // 관계가 n개라면 사람은 최대 2n까지 있다.
             Arrays.fill(uf, -1);
         }
 
@@ -56,15 +56,16 @@ public class 친구네트워크_4195 {
 
             for(int i = 0; i < F; i++) {
                 StringTokenizer st = new StringTokenizer(br.readLine());
-                String friend1 = st.nextToken(), friend2 = st.nextToken();
+                String friend1 = st.nextToken(), friend2 = st.nextToken(); // 두명의 친구 이름을 받는다.
                 if(!hm.containsKey(friend1)) {
-                    hm.put(friend1, indexForFriend);
-                    uf.uf[indexForFriend++] = -1;
+                    hm.put(friend1, indexForFriend); // Map에 저장 (이름, 인덱스 번호)
+                    uf.uf[indexForFriend++] = -1; // 해당 인덱스 번호의 노드를 생성
                 }
                 if(!hm.containsKey(friend2)) {
-                    hm.put(friend2, indexForFriend);
-                    uf.uf[indexForFriend++] = -1;
+                    hm.put(friend2, indexForFriend); // Map에 저장 (이름, 인덱스 번호)
+                    uf.uf[indexForFriend++] = -1; // 해당 인덱스 번호의 노드를 생성
                 }
+                // 각 인덱스를 유니온한다. 유니온한 결과는 유니온 된 노드의 하위 노드 개수를 반환
                 sb.append(uf.unionSet(hm.get(friend1), hm.get(friend2))).append("\n");
             }
         }
