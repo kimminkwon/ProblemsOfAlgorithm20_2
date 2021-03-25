@@ -56,7 +56,7 @@ public class Solution_하나로_D4_SW문제해결응용 {
 
 			// 2. 가까운 정점을 출발점으로 최소거리배열 업데이트
 			for(int i = 0; i < N; i++) {
-				if(minDist[i] > adjArr[minIndex][i] && !visited[i])
+				if(minDist[i] > adjArr[minIndex][i] && adjArr[minIndex][i] != 0 && !visited[i])
 					minDist[i] = adjArr[minIndex][i];
 			}
 		}
@@ -66,12 +66,10 @@ public class Solution_하나로_D4_SW문제해결응용 {
 	private static double[][] makeAdjArr(int N, int[][] landsCoor, double E) {
 		double[][] adjArr = new double[N][N];
 
-		for(int i = 0; i < N; i++) {
-			for(int j = 0; j < N; j++) {
-				if(i == j) adjArr[i][j] = INF;
+		for(int i = 0; i < N; i++)
+			for(int j = 0; j < N; j++)
 				adjArr[i][j] = getCost(landsCoor[i][0], landsCoor[i][1], landsCoor[j][0], landsCoor[j][1], E);
-			}
-		}
+
 		return adjArr;
 	}
 

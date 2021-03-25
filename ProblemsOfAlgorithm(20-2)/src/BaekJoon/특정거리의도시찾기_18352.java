@@ -13,7 +13,8 @@ public class 특정거리의도시찾기_18352 {
             this.w = w;
         }
     }
-    private static final int INF = 100000000;
+
+    private static final int INF = 300010;
     private static int N, M, K, X;
     private static List<List<Integer>> adjList = new ArrayList<>();
 
@@ -63,7 +64,6 @@ public class 특정거리의도시찾기_18352 {
                 }
             }
         }
-       
         return minPath;
     }
 }
