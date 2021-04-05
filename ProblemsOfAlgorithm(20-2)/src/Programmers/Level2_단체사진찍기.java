@@ -39,7 +39,10 @@ public class Level2_단체사진찍기 {
     }
 
     private static boolean isFitAllConditions(String[] data, int[] perm) {
-        for(String condition : data) {
+        for(String condition : data) { // 모든 조건을 Loop하면서 확인
+            // PERM의 예시: 7 3 4 1 2 5 6 0
+            // 0 1 2 3 4
+            // N ~ F = 0
             int fIdx1 = hm.get(String.valueOf(condition.charAt(0))), fIdx2 = hm.get(String.valueOf(condition.charAt(2)));
             int fNum1 = 0, fNum2 = 0;
             for(int i = 0; i < NUM_OF_FRIENDS; i++) {
