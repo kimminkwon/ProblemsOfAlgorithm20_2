@@ -85,8 +85,7 @@ public class 빙산_2573 {
                 visited[nx][ny] = true;
             }
         }
-        boolean isAllVisited = isAllVisited(visited);
-        return isAllVisited ? 0 : 1;
+        return isAllVisited(visited) ? 0 : 1;
     }
 
     private static boolean isAllVisited(boolean[][] visited) {

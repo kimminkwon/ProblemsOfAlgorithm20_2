@@ -9,7 +9,12 @@ public class 택배_8980 {
 
     private static class Box {
         int start, end, numOfBox;
-        public Box(int start, int end, int numOfBox) { this.start = start; this.end = end; this.numOfBox = numOfBox;  }
+
+        public Box(int start, int end, int numOfBox) {
+            this.start = start;
+            this.end = end;
+            this.numOfBox = numOfBox;
+        }
     }
 
     private static int N, C, M;
