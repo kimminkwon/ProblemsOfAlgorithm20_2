@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 
 public class Solution_키순서_D4_5643 {
 	public static void main(String[] args) throws Exception {
-		System.setIn(new FileInputStream("ProblemsOfAlgorithm(20-2)/src/SWEA/Input/input_키순서.txt"));
+		// System.setIn(new FileInputStream("ProblemsOfAlgorithm(20-2)/src/SWEA/Input/input_키순서.txt"));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringBuilder sb = new StringBuilder();
 		int T = Integer.parseInt(br.readLine());
