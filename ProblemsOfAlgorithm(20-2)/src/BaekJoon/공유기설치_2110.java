@@ -1,16 +1,24 @@
 package BaekJoon;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Random;
 import java.util.StringTokenizer;
 
 public class 공유기설치_2110 {
+
+    private static final int MAX_COOR = 1000000000;
+    private static final int NUM_OF_N = 200000;
+    private static final int K = 189552;
+    private static final int index = 50;
 
     private static int N, C, result = Integer.MIN_VALUE;
     private static int[] puppys;
 
     public static void main(String[] args) throws Exception {
+        makeInput();
+        System.setIn(new FileInputStream("C:/Users/82102/Desktop/eval_input_" + index + ".txt"));
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         N = Integer.parseInt(st.nextToken());
@@ -21,7 +29,45 @@ public class 공유기설치_2110 {
             puppys[i] = Integer.parseInt(br.readLine());
 
         findMaximumRangeForSpiders();
-        System.out.println(result);
+        makeOutput();
+        System.out.println("RESULT: " + result);
+    }
+
+    private static void makeOutput() {
+        try {
+            OutputStream outputStream = new FileOutputStream("C:/Users/82102/Desktop/eval_output_" + index + ".txt");
+            String str = String.valueOf(result);
+            byte[] bytes = str.getBytes();
+            outputStream.write(bytes);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void makeInput() {
+        StringBuilder sb = new StringBuilder();
+        HashSet<Integer> hs = new HashSet<>();
+        Random random = new Random();
+        try {
+            OutputStream outputStream = new FileOutputStream("C:/Users/82102/Desktop/eval_input_" + index + ".txt");
+            sb.append(NUM_OF_N).append(" ").append(K).append("\n");
+            int cnt = 0;
+            while(cnt < NUM_OF_N) {
+                int randNum = random.nextInt(MAX_COOR) + 1;
+                if(hs.contains(randNum)) {
+                    continue;
+                } else {
+                    hs.add(randNum);
+                    sb.append(randNum).append("\n");
+                    cnt++;
+                }
+            }
+            byte[] bytes = sb.toString().getBytes();
+            outputStream.write(bytes);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(sb.toString());
     }
 
     private static void findMaximumRangeForSpiders() {
